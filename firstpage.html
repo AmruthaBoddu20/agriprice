@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            position: relative;
+            background: linear-gradient(#004a8f, rgb(221, 220, 220));
+        }
+
+        #logo {
+            width: 160px;
+            height: 40px;
+            position: absolute;
+        }
+
+        .navbar {
+            background-color: #004a8f;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-left: 150px;
+        }
+
+        .navbar a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+            background-color: #004a8f;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .form-group button:hover {
+            background-color: #00366b;
+        }
+
+        .footer {
+            background-color: #004a8f;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .inline-label {
+            margin-right: 10px;
+        }
+
+        .inline-select {
+        }
+    </style>
+    <script>
+        async function predictPrice() {
+            const commodity = document.getElementById('commodity').value;
+            const date = document.getElementById('date-from').value;
+            const centre_name = document.getElementById('state').value; // Assuming state is used as centre_name
+            const avg_temperature = parseFloat(prompt('Enter average temperature:'));
+            const avg_precipitation = parseFloat(prompt('Enter average precipitation:'));
+
+            const response = await fetch('http://<https://731f-35-229-33-55.ngrok-free.app/>/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    commodity: commodity,
+                    date: date,
+                    centre_name: centre_name,
+                    avg_temperature: avg_temperature,
+                    avg_precipitation: avg_precipitation
+                }),
+            });
+
+            const result = await response.json();
+            document.getElementById('result').innerText = `
+                Predicted Price (ARIMA): ${result.predicted_price_arima}
+                Predicted Price (LSTM): ${result.predicted_price_lstm}
+            `;
+        }
+
+        document.getElementById('submit').addEventListener('click', predictPrice);
+    </script>
+</head>
+
+<body>
+
+    <img id="logo" src="logo.jpeg" alt="Your Logo">
+
+    <div class="navbar">
+        <div>
+            <a href="home.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="help.html">Help</a>
+            <a href="about.html">About Us</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Price Predictor</h2>
+        <p>Get insights and forecasts for commodity prices.</p>
+
+        <div class="form-group">
+            <label for="state" class="inline-label">State:</label>
+            <input type="text" id="state" placeholder="Enter state">
+        </div>
+
+        <div class="form-group">
+            <label for="city" class="inline-label">City:</label>
+            <input type="text" id="city" placeholder="Enter city">
+        </div>
+
+        <div class="form-group">
+            <label for="date-from" class="inline-label">Date:</label>
+            <input type="date" id="date-from">
+        </div>
+
+        <div class="form-group">
+            <label for="commodity" class="inline-label">Commodity:</label>
+            <select id="commodity" class="inline-select">
+                <option value="wheat">Wheat</option>
+                <option value="potato">Potato</option>
+                <option value="onion">Onion</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <button id="submit">Predict Price</button>
+        </div>
+
+        <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Price Predictor. All rights reserved.</p>
+    </div>
+
+</body>
+
+</html>

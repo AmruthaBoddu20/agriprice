@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Price Visualizations</title>
+    <style>
+        /* Basic reset for margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #4CAF50;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .visualization {
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideIn 1s ease-in-out forwards;
+        }
+
+        .visualization img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .visualization:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .visualization:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Make the page responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .visualization {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Price Visualizations Dashboard</h1>
+
+    <div class="container">
+        <div class="visualization">
+            <h2>Daily Prices</h2>
+            <img src="daily.jpg" alt="Daily Prices">
+        </div>
+
+        <div class="visualization">
+            <h2>Monthly Prices</h2>
+            <img src="monthly.jpg" alt="Monthly Prices">
+        </div>
+
+        <div class="visualization">
+            <h2>Yearly Prices</h2>
+            <img src="yearly.jpg" alt="Yearly Prices">
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            position: relative; /* Added for positioning the logo */
+        }
+
+        #logo {
+            width: 160px; /* Set a medium width for the logo */
+            height: 40px; /* Maintain aspect ratio */
+            position: absolute; /* Position it in the corner */
+            /* top: 10px; Distance from the top */
+            /* left: 10px; Distance from the left */
+        }
+
+        .navbar {
+            background-color: #004a8f;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: flex-end; /* Aligns navbar items to the right */
+            align-items: center;
+            margin-left: 150px; /* Adjust margin to account for logo width */
+        }
+
+        .navbar a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+            background-color: #004a8f;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .form-group button:hover {
+            background-color: #00366b;
+        }
+
+        .footer {
+            background-color: #004a8f;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .inline-label {
+            margin-right: 10px; /* Adjust spacing as needed */
+        }
+
+        .inline-select {
+            /* You can add custom styles for the select box here if needed */
+        }
+    </style>
+</head>
+
+<body>
+
+    <img id="logo" src="logo.jpeg" alt="Your Logo"> <!-- Logo Image -->
+
+    <div class="navbar">
+        <div>
+            <a href="#">Home</a>
+            <a href="#">Dashboard</a>
+            <a href="#">Help</a>
+            <a href="#">About Us</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Price Predictor</h2>
+        <p>Get insights and forecasts for commodity prices.</p>
+
+        <div class="form-group">
+            <label for="state" class="inline-label">State:</label>
+            <input type="text" id="state" placeholder="Enter state">
+        </div>
+
+        <div class="form-group">
+            <label for="district" class="inline-label">District:</label>
+            <input type="text" id="district" placeholder="Enter District">
+        </div>
+
+        <div class="form-group">
+            <label for="date" class="inline-label">Date:</label>
+            <input type="date" id="date">
+        </div>
+
+        <div class="form-group">
+            <label for="commodity" class="inline-label">Commodity:</label>
+            <select id="commodity" class="inline-select">
+                <option value="wheat">Wheat</option>
+                <option value="potato">Potato</option>
+                <option value="onion">Onion</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <button id="submit">Predict Price</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Price Predictor. All rights reserved.</p>
+    </div>
+
+</body>
+
+</html>
