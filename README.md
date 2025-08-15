@@ -1,1 +1,1 @@
-<video src=""C:\Users\amrut\Downloads\Agriprice.mp4"" controls width="600"></video>
+<video src="D:\AGRI PRICE\Agriprice.mp4" controls width="600"></video>
